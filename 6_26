@@ -1,0 +1,43 @@
+# Вариант 26. Часть 1. Вводится K целых чисел. Составьте все возможные различные дроби из этих чисел.
+# Часть 2. Среди получившихся дробей выбрать только целые числа. Найти максимальную и минимальную дроби.
+
+K = int(input("Введите количество чисел: "))
+print('Введите эти числа')
+numbers = []
+a=0
+maxi=0
+mini=1000000000000000000
+maxj=0
+minj=1000000000000000000
+for i in range(1,K+1):
+    print('Число' + ' ' + str(i) + ':' + ' ', end='')
+    n=int(input())
+    numbers.append(n)
+print('Все возможные различные дроби: ')
+for i in range(len(numbers)):
+    for j in range(len(numbers)):
+        if numbers[i] != numbers[j]:
+            print(str(numbers[i]) + '/' + str(numbers[j]))
+print('Только целые числа: ')
+for i in range(len(numbers)):
+    for j in range(len(numbers)):
+        if numbers[i] % numbers[j] == 0 and numbers[i] != numbers[j]:
+            print(str(numbers[i]) + '/' + str(numbers[j]))
+            a+=1
+if a == 0:
+    print('Целых чисел не обнаружено')
+print('Максимальная и минимальная дроби: ')
+for i in range(len(numbers)):
+    for j in range(len(numbers)):
+        if numbers[i] > maxi:
+            maxi = numbers[i]
+        if numbers[i] < mini:
+            mini = numbers[i]
+        if numbers[i] > maxi:
+            maxi = numbers[i]
+        if numbers[i] < mini:
+            mini = numbers[i]
+print('Максимальная дробь:')
+print(str(maxi) + '/' + str(mini))
+print('Минимальная дробь:')
+print(str(mini) + '/' + str(maxi))
